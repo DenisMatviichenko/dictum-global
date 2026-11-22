@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dictum Global — мокап сайту</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0B0B0A; --gold: #E9C98A; --olive: #A9BE5A; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: #F2ECE0; font-family: 'Manrope', system-ui, sans-serif; overflow: hidden; }
+  .scene {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(60% 55% at 62% 40%, rgba(201, 154, 78, .22), transparent 70%),
+      radial-gradient(45% 50% at 20% 85%, rgba(119, 140, 48, .18), transparent 70%),
+      linear-gradient(180deg, #0F0E0B, #070706);
+  }
+  .stage { position: relative; width: 1600px; height: 1000px; transform-origin: center center; flex: none; }
+
+  .caption { position: absolute; left: 70px; top: 64px; display: flex; flex-direction: column; gap: 14px; }
+  .caption small { font-size: 13px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--olive); }
+  .caption b { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 54px; line-height: 1; background: linear-gradient(180deg, #F6EBD3 30%, #C9A56A); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .caption span { font-size: 15px; color: #A39C8E; letter-spacing: .02em; }
+
+  /* ---- laptop ---- */
+  .laptop { position: absolute; left: 330px; top: 215px; width: 1010px; }
+  .laptop__lid { position: relative; width: 1010px; height: 640px; padding: 26px 26px 34px; border-radius: 26px 26px 10px 10px; background: linear-gradient(180deg, #2B2A27, #141412); box-shadow: inset 0 0 0 1.5px #44423D, 0 40px 90px rgba(0, 0, 0, .65); }
+  .laptop__lid::before { content: ''; position: absolute; top: 11px; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: #0A0A0A; box-shadow: inset 0 0 0 1.5px #2A2A2A; }
+  .laptop__screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 6px; background: #000; }
+  .laptop__base { position: relative; width: 1190px; height: 26px; margin-left: -90px; border-radius: 4px 4px 22px 22px; background: linear-gradient(180deg, #4A4843, #1E1D1B 60%, #0E0E0D); box-shadow: 0 30px 60px rgba(0, 0, 0, .7); }
+  .laptop__base::before { content: ''; position: absolute; left: 50%; top: 0; width: 180px; height: 10px; margin-left: -90px; border-radius: 0 0 12px 12px; background: #151513; }
+
+  /* ---- tablet ---- */
+  .tablet { position: absolute; left: 1250px; top: 400px; width: 330px; height: 460px; padding: 16px; border-radius: 30px; background: linear-gradient(160deg, #2F2E2B, #121211); box-shadow: inset 0 0 0 1.5px #4A4843, -30px 40px 80px rgba(0, 0, 0, .7); }
+  .tablet .screen { border-radius: 16px; }
+
+  /* ---- phone ---- */
+  .phone { position: absolute; left: 150px; top: 465px; width: 236px; height: 486px; padding: 11px; border-radius: 42px; background: linear-gradient(160deg, #34332F, #121211); box-shadow: inset 0 0 0 1.5px #4D4B45, 30px 40px 80px rgba(0, 0, 0, .75); }
+  .phone::after { content: ''; position: absolute; top: 20px; left: 50%; width: 70px; height: 20px; margin-left: -35px; border-radius: 12px; background: #000; z-index: 3; }
+  .phone .screen { border-radius: 32px; background: #0B0B0A; }
+  .phone .screen iframe { top: 34px; }
+
+  .screen { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .screen iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; pointer-events: auto; background: #0B0B0A; }
+  .glare { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(255, 255, 255, .07) 0%, rgba(255, 255, 255, 0) 38%); border-radius: inherit; z-index: 2; }
+
+  .note { position: absolute; right: 70px; top: 72px; display: flex; gap: 18px; font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #8E8A7F; }
+  .note i { font-style: normal; color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="stage" id="stage">
+    <div class="caption">
+      <small>Website redesign · 2026</small>
+      <b>Dictum Global</b>
+      <span>Юридична компанія · Україна · Türkiye</span>
+    </div>
+    <div class="note"><span>UA</span><i>·</i><span>EN</span><i>·</i><span>TR</span><i>·</i><span>RU</span></div>
+
+    <div class="laptop">
+      <div class="laptop__lid"><div class="laptop__screen screen" data-w="1440" data-src="index.html" data-scroll="0"><span class="glare"></span></div></div>
+      <div class="laptop__base"></div>
+    </div>
+    <div class="tablet"><div class="screen" data-w="834" data-src="index.html" data-scroll="#about"><span class="glare"></span></div></div>
+    <div class="phone"><div class="screen" data-w="390" data-src="index.html" data-scroll="0"><span class="glare"></span></div></div>
+  </div>
+</div>
+<script>
+  // Each screen holds the real site at its device width, scaled down to fit the frame.
+  document.querySelectorAll('.screen').forEach(function (box) {
+    var w = +box.dataset.w;
+    var f = document.createElement('iframe');
+    f.title = 'Dictum Global ' + w + 'px';
+    f.src = box.dataset.src;
+    f.setAttribute('loading', 'eager');
+    box.insertBefore(f, box.firstChild);
+    function fit() {
+      var s = box.clientWidth / w;
+      var off = parseFloat(getComputedStyle(f).top) || 0;
+      f.style.width = w + 'px';
+      f.style.height = ((box.clientHeight - off) / s) + 'px';
+      f.style.transform = 'scale(' + s + ')';
+    }
+    fit();
+    f.addEventListener('load', function () {
+      try {
+        var d = f.contentDocument;
+        var tip = d.getElementById('tip'); if (tip) tip.remove();
+        var fab = d.getElementById('tip-fab'); if (fab) fab.remove();
+        d.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+        var sc = box.dataset.scroll;
+        if (sc && sc !== '0') {
+          var t = d.querySelector(sc);
+          if (t) setTimeout(function () { f.contentWindow.scrollTo(0, t.getBoundingClientRect().top + f.contentWindow.scrollY - 90); }, 400);
+        }
+      } catch (e) { /* cross-origin: show the page as is */ }
+    });
+  });
+  // Scale the whole stage to the window.
+  var stage = document.getElementById('stage');
+  function scaleStage() {
+    var s = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  scaleStage();
+  window.addEventListener('resize', scaleStage);
+</script>
+</body>
+</html>
