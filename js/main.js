@@ -16,7 +16,26 @@
   /* ЗАКРИТИЙ РЕЖИМ: поки відкрита лише головна сторінка українською.
      true  → інші сторінки, розділи меню й перемикач мов заблоковані (відкриття будь-якої іншої сторінки веде на головну).
      false → увесь сайт і всі мови доступні. */
-  var LOCKED = true;
+  var LOCKED = false;
+
+  /* МОВИ ЗАКРИТІ: true → перемикач мов неактивний, а англійська/турецька/російська версії ведуть на українську. false → усі мови доступні. */
+  var LOCK_LANGS = false;
+  if (LOCK_LANGS) {
+    var langRe = /\/(en|tr|ru)\//;
+    if (langRe.test(location.pathname)) { location.replace(location.href.replace(langRe, '/')); return; }
+    document.documentElement.classList.add('is-locked');
+    var lt = document.createElement('div');
+    lt.setAttribute('role', 'status');
+    lt.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);z-index:95;padding:12px 20px;border-radius:999px;background:#141A21;border:1px solid rgba(169,190,90,.5);color:#DCE5B5;font-size:14px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap';
+    document.body.appendChild(lt);
+    var ltT = null;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('.lang a'); if (!a || a.getAttribute('aria-current') === 'true') return;
+      e.preventDefault(); e.stopPropagation();
+      lt.textContent = 'Інші мови скоро будуть доступні'; lt.style.opacity = '1'; lt.style.transform = 'translateX(-50%)';
+      clearTimeout(ltT); ltT = setTimeout(function () { lt.style.opacity = '0'; lt.style.transform = 'translateX(-50%) translateY(20px)'; }, 2200);
+    }, true);
+  }
   if (LOCKED) {
     var meScript = document.querySelector('script[src$="js/main.js"]');
     var ROOT = new URL('..', meScript ? meScript.src : location.href).href;
